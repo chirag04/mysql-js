@@ -159,9 +159,10 @@ function finish() {
 
 function testPath(mysqlPath) {
   // We assert that a path is a valid mysql install true if and only if 
-  // it contains a mysql-test directory
-  var testPath = path.join(mysqlPath.trim(), "mysql-test");
-  return verify(testPath);
+  // it contains include and lib directory of mysql
+  var includePath = path.join(mysqlPath.trim(), "include");
+  var libPath = path.join(mysqlPath.trim(), "lib");
+  return (verify(includePath) && verify(libPath));
 }
 
 function configure(mysql, layout) {
